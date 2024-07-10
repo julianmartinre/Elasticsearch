@@ -83,21 +83,12 @@ namespace ElasticsearchApi
         public bool DeleteIndex(string indexName = "products")
         {
             var deleteIndexResponse = client.Indices.Delete(indexName);
-
             return deleteIndexResponse.IsValid;
         }
 
         public bool AddProducto(IProducto producto)
         {
             var indexResponse = client.IndexDocument(producto);
-            if (indexResponse.IsValid)
-            {
-                Console.WriteLine($"Producto {producto.Nombre} indexado correctamente");
-            }
-            else
-            {
-                Console.WriteLine($"Error al indexar producto {producto.Nombre}: " + indexResponse.DebugInformation);
-            }
             return indexResponse.IsValid;
         }
 
